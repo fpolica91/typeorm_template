@@ -1,15 +1,13 @@
 import 'reflect-metadata';
-import 'dotenv/config';
-
 import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
 
 import routes from './routes';
 import AppError from './errors/AppError';
 
-import createConnection from './database';
+import './database';
 
-createConnection();
+// createConnection();
 const app = express();
 
 app.use(express.json());
@@ -23,7 +21,7 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
     });
   }
 
-  console.error(err);
+  console.error(err.message, 'the error message');
 
   return response.status(500).json({
     status: 'error',

@@ -1,26 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import 'reflect-metadata';
 import { Router } from 'express';
-
-// import TransactionsRepository from '../repositories/TransactionsRepository';
-// import CreateTransactionService from '../services/CreateTransactionService';
-// import DeleteTransactionService from '../services/DeleteTransactionService';
-// import ImportTransactionsService from '../services/ImportTransactionsService';
+import { getCustomRepository } from 'typeorm';
+import SchoolRepository from '../repositories/SchoolRepository';
 
 const transactionsRouter = Router();
 
-transactionsRouter.get('/', async (request, response) => {
-  // TODO
-});
-
-transactionsRouter.post('/', async (request, response) => {
-  // TODO
-});
-
-transactionsRouter.delete('/:id', async (request, response) => {
-  // TODO
-});
-
-transactionsRouter.post('/import', async (request, response) => {
-  // TODO
+transactionsRouter.post('/create', async (request, response) => {
+  const schoolssRepository = getCustomRepository(SchoolRepository);
+  const school = await schoolssRepository.execute();
+  return response.json(school);
 });
 
 export default transactionsRouter;
