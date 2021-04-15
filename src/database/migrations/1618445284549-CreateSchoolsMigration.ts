@@ -1,4 +1,5 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import { Geometry } from '@types/geojson';
 
 export default class CreateSchoolsMigration1618445284549
   implements MigrationInterface {
@@ -11,6 +12,8 @@ export default class CreateSchoolsMigration1618445284549
             name: 'id',
             type: 'varchar',
             isPrimary: true,
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
           },
           {
             name: 'name',
@@ -21,12 +24,17 @@ export default class CreateSchoolsMigration1618445284549
             type: 'varchar',
           },
           {
-            name: 'longitude',
-            type: 'int',
+            name: 'latitude',
+            type: 'varchar',
           },
           {
-            name: 'latitude',
-            type: 'int',
+            name: 'longitude',
+            type: 'varchar',
+          },
+          {
+            name: 'location',
+            type: 'Point',
+            isNullable: true,
           },
 
           {
